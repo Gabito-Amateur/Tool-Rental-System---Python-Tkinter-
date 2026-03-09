@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import messagebox
 from funciones import HerramientaAlquiler
 from login import iniciar_login
-from datetime import datetime
 
 #Funcion principal del sistema
 def abrir_sistema():
@@ -69,6 +68,7 @@ def abrir_sistema():
         spin_hora_salida.insert(0, "00")
         spin_min_salida.delete(0, tk.END)
         spin_min_salida.insert(0, "00")
+        id_visual = herramienta.obtener_id()
         lista.insert(tk.END, f"{id_tool} - Departure: {hora_s} - Rate: ${tarifa:.2f}/hr")
         entry_id.delete(0, tk.END)
         entry_tarifa.delete(0, tk.END)
@@ -101,7 +101,7 @@ def abrir_sistema():
                            font=("Arial", 11, "bold"), fg="#1a73e8")
     label_costo.pack(pady=10)
 
-    def registrar_retorno():
+    def registrar_retorno_boton():
         seleccion = lista.curselection()
         if not seleccion:
             messagebox.showerror("Error", "Please select a tool from the list")
@@ -126,7 +126,7 @@ def abrir_sistema():
         spin_min_retorno.delete(0, tk.END)
         spin_min_retorno.insert(0, "00")
 
-    tk.Button(frame_der, text="Register Return & Calculate", command=registrar_retorno,
+    tk.Button(frame_der, text="Register Return & Calculate", command=registrar_retorno_boton,
               bg="#1a73e8", fg="white", font=("Arial", 10, "bold"),
               relief=tk.FLAT, cursor="hand2").pack(ipady=5, fill=tk.X)
 
